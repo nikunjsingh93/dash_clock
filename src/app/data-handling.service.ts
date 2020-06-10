@@ -27,7 +27,7 @@ export class DataHandlingService {
 
    getWeatherData() {
 
-    fetch('http://api.openweathermap.org/data/2.5/weather?q='+this.cityValue+'&appid=3398dd874ccbff037313128b7fd0ae02')
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+this.cityValue+'&appid=3398dd874ccbff037313128b7fd0ae02')
     .then(res => res.json())
     .then(data => {
       this.setWeatherData(data);
