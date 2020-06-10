@@ -11,6 +11,7 @@ import { ClockComponent } from './clock/clock.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SettingsModalComponent } from './settings-modal/settings-modal.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     BrowserAnimationsModule,
     MatCardModule,
     FontAwesomeModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
