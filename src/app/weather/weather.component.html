@@ -13,14 +13,24 @@
                         {{this.dataService.weatherData.temp_celcius}}°
                     </span>
                 </div>
-                <div class="sec-temp padding-bottom-10">
+                <div class="highlow padding-bottom-10">
                     <span>
                         {{this.dataService.weatherData.temp_min}}° / {{this.dataService.weatherData.temp_max}}°
                     </span>
                 </div>
-                <div class="sec-temp padding-bottom-10">
+                <div class="sec-temp padding-bottom-20">
                     <span>
                         Feels Like: {{this.dataService.weatherData.temp_feels_like}}°
+                    </span>
+                </div>
+                <div class="name padding-bottom-10">
+                    <span>
+                       {{this.dataService.weatherData.name}}
+                    </span>
+                </div>
+                <div class="desc padding-bottom-10">
+                    <span>
+                    {{ this.dataService.weatherData.weather[0].description}}
                     </span>
                 </div>
             </div>

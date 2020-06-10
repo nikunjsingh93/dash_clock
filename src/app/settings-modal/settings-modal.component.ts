@@ -14,6 +14,10 @@ export class SettingsModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  update() {
+    console.log("update called")
+  }
   
 
 }

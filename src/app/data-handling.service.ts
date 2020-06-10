@@ -55,6 +55,8 @@ export class DataHandlingService {
 
     this.weatherData.temp_feels_like = (this.weatherData.main.feels_like - 273.15).toFixed(0);
 
+    console.log("Name",this.weatherData.name, this.weatherData.weather[0].description);  
+
 
   }
 }
