@@ -1,0 +1,80 @@
+{
+  "configVersion": 1,
+  "timestamp": 1591829066220,
+  "index": "https://nikunjsingh93.github.io/dash_clock/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "https://nikunjsingh93.github.io/dash_clock/favicon.ico",
+        "https://nikunjsingh93.github.io/dash_clock/index.html",
+        "https://nikunjsingh93.github.io/dash_clock/main-es2015.06ba13fbb2bdc823f008.js",
+        "https://nikunjsingh93.github.io/dash_clock/main-es5.06ba13fbb2bdc823f008.js",
+        "https://nikunjsingh93.github.io/dash_clock/manifest.webmanifest",
+        "https://nikunjsingh93.github.io/dash_clock/polyfills-es2015.690002c25ea8557bb4b0.js",
+        "https://nikunjsingh93.github.io/dash_clock/polyfills-es5.9e286f6d9247438cbb02.js",
+        "https://nikunjsingh93.github.io/dash_clock/runtime-es2015.1eba213af0b233498d9d.js",
+        "https://nikunjsingh93.github.io/dash_clock/runtime-es5.1eba213af0b233498d9d.js",
+        "https://nikunjsingh93.github.io/dash_clock/styles.e8170dc49367484f9a07.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-128x128.png",
+        "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-144x144.png",
+        "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-152x152.png",
+        "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-192x192.png",
+        "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-384x384.png",
+        "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-512x512.png",
+        "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-72x72.png",
+        "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "https://nikunjsingh93.github.io/dash_clock/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "https://nikunjsingh93.github.io/dash_clock/index.html": "1cde34a48255b5ddf884d7f659d5afce66ee89a3",
+    "https://nikunjsingh93.github.io/dash_clock/main-es2015.06ba13fbb2bdc823f008.js": "7769df258c2b1724a7e0bf886f8e157d1bbf2ffb",
+    "https://nikunjsingh93.github.io/dash_clock/main-es5.06ba13fbb2bdc823f008.js": "60fa6c9899617229e8f5a3d26976c7f34f451fe9",
+    "https://nikunjsingh93.github.io/dash_clock/manifest.webmanifest": "ab68ea5f93cdee197a71c316a87d2f77eb58c1c7",
+    "https://nikunjsingh93.github.io/dash_clock/polyfills-es2015.690002c25ea8557bb4b0.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
+    "https://nikunjsingh93.github.io/dash_clock/polyfills-es5.9e286f6d9247438cbb02.js": "8aa26ea87b9958c6bd13b7c257c0e9940438e684",
+    "https://nikunjsingh93.github.io/dash_clock/runtime-es2015.1eba213af0b233498d9d.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "https://nikunjsingh93.github.io/dash_clock/runtime-es5.1eba213af0b233498d9d.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "https://nikunjsingh93.github.io/dash_clock/styles.e8170dc49367484f9a07.css": "81ad9fec27266effdbd7c330f7f000d7249b8887"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
