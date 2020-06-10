@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faSun } from '@fortawesome/free-solid-svg-icons';
+import { faMoon } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-weather',
@@ -6,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
+
+  faSun = faSun;
+  faMoon = faMoon;
+
+  iconDay;
 
   weatherData:any;
 
@@ -36,6 +43,16 @@ export class WeatherComponent implements OnInit {
 
     this.weatherData = data;
 
+    let sunsetTime = new Date(this.weatherData.sys.sunset * 1000);
+
+    this.weatherData.sunset_time = sunsetTime.toLocaleTimeString();
+
+    let currentDate = new Date();
+    
+    this.weatherData.isDay = (currentDate.getTime() < sunsetTime.getTime());
+
+    this.iconDay = this.weatherData.isDay;
+
     this.weatherData.temp_celcius = (this.weatherData.main.temp - 273.15).toFixed(0);
 
     this.weatherData.temp_min = (this.weatherData.main.temp_min - 273.15).toFixed(0);
@@ -43,10 +60,6 @@ export class WeatherComponent implements OnInit {
     this.weatherData.temp_max = (this.weatherData.main.temp_max - 273.15).toFixed(0);
 
     this.weatherData.temp_feels_like = (this.weatherData.main.feels_like - 273.15).toFixed(0);
-
-
-
-    console.log("TEMP",this.weatherData.temp_celcius, this.weatherData.temp_min,this.weatherData.temp_max,this.weatherData.temp_feels_like)
 
 
   }

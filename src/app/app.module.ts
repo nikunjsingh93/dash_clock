@@ -8,6 +8,9 @@ import {MatCardModule} from '@angular/material/card';
 import { WeatherComponent } from './weather/weather.component';
 import { CalenderComponent } from './calender/calender.component';
 import { ClockComponent } from './clock/clock.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SettingsModalComponent } from './settings-modal/settings-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import { ClockComponent } from './clock/clock.component';
     DashboardComponent,
     WeatherComponent,
     CalenderComponent,
-    ClockComponent
+    ClockComponent,
+    SettingsModalComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    FontAwesomeModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
