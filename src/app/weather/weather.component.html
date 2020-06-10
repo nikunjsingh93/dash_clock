@@ -4,17 +4,20 @@
     <div class="col-80">
         <mat-card class="example-card">
             <div class="weather">
-                <div>
-                    Temperature: {{this.weatherData.temp_celcius}}
+                <div class="main-temp padding-bottom-20">
+                    <span>
+                        {{this.weatherData.temp_celcius}}°
+                    </span>
                 </div>
-                <div>
-                    Min: {{this.weatherData.temp_min}}
+                <div class="sec-temp padding-bottom-10">
+                    <span>
+                        {{this.weatherData.temp_min}}° / {{this.weatherData.temp_max}}°
+                    </span>
                 </div>
-                <div>
-                    Max: {{this.weatherData.temp_max}}
-                </div>
-                <div>
-                    Feels Like: {{this.weatherData.temp_feels_like}}
+                <div class="sec-temp">
+                    <span>
+                        Feels Like: {{this.weatherData.temp_feels_like}}°
+                    </span>
                 </div>
             </div>
         </mat-card>
