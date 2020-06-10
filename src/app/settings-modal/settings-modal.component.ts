@@ -8,15 +8,22 @@ import { DataHandlingService } from './../data-handling.service';
 })
 export class SettingsModalComponent implements OnInit {
 
+  localValue;
 
   constructor(public dataService: DataHandlingService) {  }
 
   ngOnInit(): void {
   }
 
+  setValue(event: Event) {
+    this.localValue = (event.target as HTMLInputElement).value;
+  }
+
 
   update() {
-    console.log("update called")
+    this.dataService.cityValue =  this.localValue; 
+
+    this.dataService.getWeatherData();
   }
   
 

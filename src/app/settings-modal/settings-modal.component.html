@@ -3,8 +3,7 @@
 
 
   <h3>Enter Your City Name</h3>
-  <input matInput type="text" [(ngModel)]="this.dataService.cityValue" placeholder="Enter City Name">
- 
+  <input matInput type="text" (keyup)="setValue($event)" placeholder="Enter City Name">
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
