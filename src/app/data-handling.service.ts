@@ -18,6 +18,10 @@ export class DataHandlingService {
     };
 
     this.getWeatherData();
+
+    setInterval(() => {
+      this.getWeatherData(); 
+    }, 300000);
    }
 
 
@@ -34,6 +38,7 @@ export class DataHandlingService {
   }
 
   setWeatherData(data) {
+
 
     this.weatherData = data;
 
@@ -58,4 +63,6 @@ export class DataHandlingService {
     this.weatherDesc = this.weatherData.weather[0].description;
 
   }
+
+
 }
