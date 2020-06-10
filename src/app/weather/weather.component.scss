@@ -72,6 +72,23 @@
     font-size: 16px;
   }
 
+  @media only screen and (max-width: 1110px) {
+
+    .top-spacer {
+      height: 90px;
+    }
+
+    
+  }
+
+  @media only screen and (max-width: 735px) {
+
+    .top-spacer {
+      height: 50px;
+    }
+
+    
+  }
 
   @media only screen and (max-width: 600px) {
 

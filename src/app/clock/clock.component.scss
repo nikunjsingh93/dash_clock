@@ -36,9 +36,33 @@
 @media only screen and (max-width: 1110px) {
   .clock {
     text-align: center;
+    font-size: 60px;
+    padding-top: 130px;
+    padding-bottom: 130px;
+    color: white;
+  }
+
+  .top-spacer {
+    height: 90px;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .clock {
+    text-align: center;
+    font-size: 55px;
+    padding-top: 130px;
+    padding-bottom: 130px;
+    color: white;
+  }
+}
+
+@media only screen and (max-width: 795px) {
+  .clock {
+    text-align: center;
     font-size: 50px;
-    padding-top: 110px;
-    padding-bottom: 110px;
+    padding-top: 130px;
+    padding-bottom: 130px;
     color: white;
   }
 }
@@ -47,10 +71,22 @@
 @media only screen and (max-width: 735px) {
   .clock {
     text-align: center;
-    font-size: 40px;
-    padding-top: 110px;
-    padding-bottom: 110px;
+    font-size: 45px;
+    padding-top: 130px;
+    padding-bottom: 130px;
     color: white;
+  }
+
+  .col-80 {
+    width: 90%;
+  }
+  
+  .col-20 {
+    width: 10%;
+  }
+
+  .top-spacer {
+    height: 50px;
   }
 }
 
@@ -58,13 +94,21 @@
   .clock {
     text-align: center;
     font-size: 70px;
-    padding-top: 110px;
-    padding-bottom: 110px;
+    padding-top: 130px;
+    padding-bottom: 130px;
     color: white;
   }
 
   .top-spacer {
     height: 50px;
+  }
+
+  .col-80 {
+    width: 80%;
+  }
+  
+  .col-20 {
+    width: 20%;
   }
 }
 
@@ -76,6 +120,15 @@
     padding-bottom: 10px;
     color: white;
   }
+
+  .col-80 {
+    width: 80%;
+  }
+  
+  .col-20 {
+    width: 20%;
+  }
+
 }
 
 @media only screen and (max-width: 495px) {
@@ -85,5 +138,13 @@
     padding-top: 10px;
     padding-bottom: 10px;
     color: white;
+  }
+
+  .col-80 {
+    width: 80%;
+  }
+  
+  .col-20 {
+    width: 20%;
   }
 }
