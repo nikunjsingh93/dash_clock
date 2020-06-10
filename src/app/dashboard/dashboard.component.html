@@ -1,7 +1,14 @@
 <div class="container">
-    <mat-card class="example-card">
-        {{ time | date: 'hh:mm:ss a' }}
-    </mat-card>
 
-    <app-weather></app-weather>
+    <div class="col-100 flex-wrap">
+        <div class="col-50">
+            <app-clock></app-clock>
+            <app-calender></app-calender>
+        </div>
+        <div class="col-50">
+
+            <app-weather></app-weather>
+        </div>
+
+    </div>
 </div>

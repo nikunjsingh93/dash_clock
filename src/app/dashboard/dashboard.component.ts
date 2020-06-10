@@ -7,17 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  time = new Date();
-  timer;
 
   ngOnInit() {
-    this.timer = setInterval(() => {
-      this.time = new Date();
-    }, 1000);
+  
   }
 
-  ngOnDestroy(){
-    clearInterval(this.timer);
-  }
+ 
 
 }

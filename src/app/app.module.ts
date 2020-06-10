@@ -7,13 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
 import { WeatherComponent } from './weather/weather.component';
 import { CalenderComponent } from './calender/calender.component';
+import { ClockComponent } from './clock/clock.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     WeatherComponent,
-    CalenderComponent
+    CalenderComponent,
+    ClockComponent
   ],
   imports: [
     BrowserModule,
