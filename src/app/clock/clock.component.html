@@ -1,3 +1,10 @@
-<mat-card class="example-card">
-    {{ time | date: 'hh:mm:ss a' }}
-</mat-card>
+<div class="top-spacer"></div>
+<div class="col-100 flex-wrap">
+    <div class="col-20"></div>
+    <div class="col-80">
+        <mat-card class="example-card">
+            <div class="clock"> {{ time | date: 'hh:mm:ss a' }}</div>
+        </mat-card>
+    </div>
+    <div class="col-20"></div>
+</div>
