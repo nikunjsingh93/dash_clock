@@ -1,15 +1,23 @@
-<h1>
-    Temperature: {{this.weatherData.temp_celcius}}
-</h1>
-<h1>
-    Min: {{this.weatherData.temp_min}}
-</h1>
-
-<h1>
-    Max: {{this.weatherData.temp_max}}
-</h1>
-
-<h1>
-    Feels Like: {{this.weatherData.temp_feels_like}}
-</h1>
-
+<div class="top-spacer"></div>
+<div class="col-100 flex-wrap">
+    <div class="col-20"></div>
+    <div class="col-80">
+        <mat-card class="example-card">
+            <div class="weather">
+                <div>
+                    Temperature: {{this.weatherData.temp_celcius}}
+                </div>
+                <div>
+                    Min: {{this.weatherData.temp_min}}
+                </div>
+                <div>
+                    Max: {{this.weatherData.temp_max}}
+                </div>
+                <div>
+                    Feels Like: {{this.weatherData.temp_feels_like}}
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-20"></div>
+</div>
