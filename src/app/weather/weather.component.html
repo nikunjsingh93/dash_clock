@@ -5,22 +5,22 @@
         <mat-card class="example-card">
             <div class="weather">
                 <div class="padding-bottom-40">
-                    <fa-icon *ngIf="iconDay" [icon]="faSun" size="3x"></fa-icon>
-                    <fa-icon *ngIf="!iconDay" [icon]="faMoon" size="3x" ></fa-icon>
+                    <fa-icon *ngIf="this.dataService.iconDay" [icon]="faSun" size="3x"></fa-icon>
+                    <fa-icon *ngIf="!this.dataService.iconDay" [icon]="faMoon" size="3x" ></fa-icon>
                 </div>
                 <div class="main-temp padding-bottom-20">
                     <span>
-                        {{this.weatherData.temp_celcius}}°
+                        {{this.dataService.weatherData.temp_celcius}}°
                     </span>
                 </div>
                 <div class="sec-temp padding-bottom-10">
                     <span>
-                        {{this.weatherData.temp_min}}° / {{this.weatherData.temp_max}}°
+                        {{this.dataService.weatherData.temp_min}}° / {{this.dataService.weatherData.temp_max}}°
                     </span>
                 </div>
                 <div class="sec-temp padding-bottom-10">
                     <span>
-                        Feels Like: {{this.weatherData.temp_feels_like}}°
+                        Feels Like: {{this.dataService.weatherData.temp_feels_like}}°
                     </span>
                 </div>
             </div>
