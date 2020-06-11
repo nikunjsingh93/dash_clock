@@ -17,7 +17,7 @@
 
   .date {
     text-align: center;
-    font-size: 27px;
+    font-size: 40px;
     padding-top: 35px;
     padding-bottom: 35px;
     color: white;
@@ -27,20 +27,48 @@
     background-color: #333139;
   }
 
+  @media only screen and (max-width: 1185px) {
+    .date {
+      text-align: center;
+      font-size: 35px;
+      padding-top: 35px;
+      padding-bottom: 35px;
+      color: white;
+    } 
+  }
   
 @media only screen and (max-width: 1110px) {
   .date {
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     padding-top: 35px;
     padding-bottom: 35px;
     color: white;
   } 
 }
 
+@media only screen and (max-width: 915px) {
+  .date {
+    text-align: center;
+    font-size: 25px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    color: white;
+  } 
+}
+
+
+
+
 @media only screen and (max-width: 860px) {
 
-
+  .date {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    color: white;
+  } 
 
   .col-80 {
     width: 90%;
@@ -52,8 +80,15 @@
 
 }
 
-@media only screen and (max-width: 795px) {
+@media only screen and (max-width: 745px) {
 
+  .date {
+    text-align: center;
+    font-size: 27px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    color: white;
+  } 
 
   .col-80 {
     width: 90%;
@@ -69,7 +104,7 @@
 @media only screen and (max-width: 735px) {
   .date {
     text-align: center;
-    font-size: 15px;
+    font-size: 24px;
     padding-top: 35px;
     padding-bottom: 35px;
     color: white;
@@ -105,7 +140,7 @@
 @media only screen and (max-width: 500px) {
   .date {
     text-align: center;
-    font-size: 15px;
+    font-size: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     color: white;
