@@ -38,6 +38,34 @@
   } 
 }
 
+@media only screen and (max-width: 860px) {
+
+
+
+  .col-80 {
+    width: 90%;
+  }
+  
+  .col-20 {
+    width: 10%;
+  }
+
+}
+
+@media only screen and (max-width: 795px) {
+
+
+  .col-80 {
+    width: 90%;
+  }
+  
+  .col-20 {
+    width: 10%;
+  }
+
+
+}
+
 @media only screen and (max-width: 735px) {
   .date {
     text-align: center;

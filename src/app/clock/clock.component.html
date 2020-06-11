@@ -3,7 +3,8 @@
     <div class="col-20"></div>
     <div class="col-80">
         <mat-card class="example-card">
-            <div class="clock"> {{ time | date: 'hh:mm a' }}</div>
+            <div class="clock"> {{ time | date: 'hh:mm' }}</div>
+            <div class="clock-st"> {{ time | date: 'a' }}</div>
         </mat-card>
     </div>
     <div class="col-20"></div>
