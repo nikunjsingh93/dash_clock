@@ -1,5 +1,15 @@
 # DashClock
 
+See your local time and weather in a clean Dark UI. PWA made in Angular
+
+App Link: https://nikunjsingh93.github.io/dash_clock/
+
+# Screenshots
+
+![Capture](https://user-images.githubusercontent.com/31995471/84334113-8a5fd300-ab5f-11ea-9884-5381d90bfaca.PNG)
+
+![Screenshot_20200610-204228](https://user-images.githubusercontent.com/31995471/84334116-8df35a00-ab5f-11ea-9c00-fb7f82f3e327.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
