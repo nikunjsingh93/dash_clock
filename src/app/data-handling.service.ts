@@ -21,7 +21,7 @@ export class DataHandlingService {
 
     setInterval(() => {
       this.getWeatherData(); 
-    }, 300000);
+    }, 1800000);
    }
 
 
