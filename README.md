@@ -1,6 +1,6 @@
 # DashClock
 
-See your local time and weather in a clean Dark UI. PWA made in Angular
+See your local time and weather in a clean Responsive Dark UI. PWA made in Angular
 
 App Link: https://nikunjsingh93.github.io/dash_clock/
 
