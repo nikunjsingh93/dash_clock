@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1591835791336,
+  "timestamp": 1591890966477,
   "index": "https://nikunjsingh93.github.io/dash_clock/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "https://nikunjsingh93.github.io/dash_clock/favicon.ico",
         "https://nikunjsingh93.github.io/dash_clock/index.html",
-        "https://nikunjsingh93.github.io/dash_clock/main-es2015.bb27b32d1e55109777f3.js",
-        "https://nikunjsingh93.github.io/dash_clock/main-es5.bb27b32d1e55109777f3.js",
+        "https://nikunjsingh93.github.io/dash_clock/main-es2015.098acf28f34b98a51db2.js",
+        "https://nikunjsingh93.github.io/dash_clock/main-es5.098acf28f34b98a51db2.js",
         "https://nikunjsingh93.github.io/dash_clock/manifest.webmanifest",
         "https://nikunjsingh93.github.io/dash_clock/polyfills-es2015.690002c25ea8557bb4b0.js",
         "https://nikunjsingh93.github.io/dash_clock/polyfills-es5.9e286f6d9247438cbb02.js",
@@ -49,9 +49,9 @@
     "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "https://nikunjsingh93.github.io/dash_clock/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "https://nikunjsingh93.github.io/dash_clock/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "https://nikunjsingh93.github.io/dash_clock/index.html": "7d389218751d9112d8a21949a59c071a58ef6b13",
-    "https://nikunjsingh93.github.io/dash_clock/main-es2015.bb27b32d1e55109777f3.js": "cf908113dd3725a277890008845840c4ad0880c5",
-    "https://nikunjsingh93.github.io/dash_clock/main-es5.bb27b32d1e55109777f3.js": "3d9d599c3f3969e26cd09d64ebb65447718fcaab",
+    "https://nikunjsingh93.github.io/dash_clock/index.html": "84f20ad0fbbcaa721ad510c164c021fec0eb7c4c",
+    "https://nikunjsingh93.github.io/dash_clock/main-es2015.098acf28f34b98a51db2.js": "2658853516ca7a9f0a84b2d540361a86d266c95c",
+    "https://nikunjsingh93.github.io/dash_clock/main-es5.098acf28f34b98a51db2.js": "2e6170db756871694c374e798e50b93b10220c4e",
     "https://nikunjsingh93.github.io/dash_clock/manifest.webmanifest": "ab68ea5f93cdee197a71c316a87d2f77eb58c1c7",
     "https://nikunjsingh93.github.io/dash_clock/polyfills-es2015.690002c25ea8557bb4b0.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
     "https://nikunjsingh93.github.io/dash_clock/polyfills-es5.9e286f6d9247438cbb02.js": "8aa26ea87b9958c6bd13b7c257c0e9940438e684",
