@@ -11,16 +11,16 @@
   gap: clamp(9px, 1.5vw, 16px);
 }
 
-.weather-icon-wrap {
-  display: grid;
-  place-items: center;
-  width: clamp(36px, 5vw, 56px);
-  height: clamp(36px, 5vw, 56px);
-}
-
 .weather-icon {
+  width: clamp(24px, 3.6vw, 42px);
+  height: clamp(24px, 3.6vw, 42px);
   color: #dff8ff;
-  font-size: clamp(30px, 4.8vw, 56px);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
   filter:
     drop-shadow(0 0 10px rgba(75, 231, 255, 0.34))
     drop-shadow(0 0 24px rgba(75, 231, 255, 0.14));
