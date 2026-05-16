@@ -8,24 +8,61 @@ import { DataHandlingService } from './../data-handling.service';
 })
 export class SettingsModalComponent implements OnInit {
 
-  localValue;
+  searchValue = '';
+  cityResults = [];
+  selectedCity;
+  isSearching = false;
+  private searchTimer;
   isFullScreen = false;
 
   constructor(public dataService: DataHandlingService) {  }
 
   ngOnInit(): void {
     this.isFullScreen = !!this.getFullScreenElement();
+    this.searchValue = this.dataService.cityValue;
   }
 
-  setValue(event: Event) {
-    this.localValue = (event.target as HTMLInputElement).value;
+  searchCities(event: Event) {
+    this.searchValue = (event.target as HTMLInputElement).value;
+    this.selectedCity = null;
+
+    clearTimeout(this.searchTimer);
+
+    if (!this.searchValue || this.searchValue.trim().length < 2) {
+      this.cityResults = [];
+      this.isSearching = false;
+      return;
+    }
+
+    this.isSearching = true;
+
+    this.searchTimer = setTimeout(() => {
+      this.dataService.searchLocations(this.searchValue)
+        .then(results => {
+          this.cityResults = results;
+          this.isSearching = false;
+        })
+        .catch(() => {
+          this.cityResults = [];
+          this.isSearching = false;
+        });
+    }, 250);
   }
 
+  selectCity(city) {
+    this.selectedCity = city;
+    this.searchValue = this.formatCity(city);
+    this.cityResults = [];
+  }
 
   update() {
-    this.dataService.cityValue =  this.localValue; 
+    if (this.selectedCity) {
+      this.dataService.setLocation(this.selectedCity);
+    }
+  }
 
-    this.dataService.getWeatherData();
+  formatCity(city) {
+    return this.dataService.formatLocation(city);
   }
 
   toggleFullScreen() {

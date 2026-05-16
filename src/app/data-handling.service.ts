@@ -11,6 +11,8 @@ export class DataHandlingService {
   weatherDesc;
 
   cityValue = 'boston';
+  selectedLocation:any;
+  private apiKey = '3398dd874ccbff037313128b7fd0ae02';
 
   constructor() {
     this.weatherData = {
@@ -27,7 +29,11 @@ export class DataHandlingService {
 
    getWeatherData() {
 
-    fetch('https://api.openweathermap.org/data/2.5/weather?q='+this.cityValue+'&appid=3398dd874ccbff037313128b7fd0ae02')
+    const weatherUrl = this.selectedLocation
+      ? 'https://api.openweathermap.org/data/2.5/weather?lat=' + this.selectedLocation.lat + '&lon=' + this.selectedLocation.lon + '&appid=' + this.apiKey
+      : 'https://api.openweathermap.org/data/2.5/weather?q=' + this.cityValue + '&appid=' + this.apiKey;
+
+    fetch(weatherUrl)
     .then(res => res.json())
     .then(data => {
       this.setWeatherData(data);
@@ -35,6 +41,31 @@ export class DataHandlingService {
 
     // let data = JSON.parse('{"coord":{"lon":-71.06,"lat":42.36},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04n"}],"base":"stations","main":{"temp":292.38,"feels_like":290.19,"temp_min":290.93,"temp_max":293.71,"pressure":1015,"humidity":59},"visibility":16093,"wind":{"speed":3.6,"deg":70},"clouds":{"all":90},"dt":1591756930,"sys":{"type":1,"id":3486,"country":"US","sunrise":1591693642,"sunset":1591748403},"timezone":-14400,"id":4930956,"name":"Boston","cod":200}');
     // this.setWeatherData(data);
+  }
+
+  searchLocations(query) {
+    if (!query || query.trim().length < 2) {
+      return Promise.resolve([]);
+    }
+
+    return fetch('https://api.openweathermap.org/geo/1.0/direct?q=' + encodeURIComponent(query.trim()) + '&limit=6&appid=' + this.apiKey)
+      .then(res => res.json())
+      .then(data => Array.isArray(data) ? data : []);
+  }
+
+  setLocation(location) {
+    this.selectedLocation = location;
+    this.cityValue = this.formatLocation(location);
+
+    this.getWeatherData();
+  }
+
+  formatLocation(location) {
+    if (!location) {
+      return '';
+    }
+
+    return [location.name, location.state, location.country].filter(Boolean).join(', ');
   }
 
   setWeatherData(data) {

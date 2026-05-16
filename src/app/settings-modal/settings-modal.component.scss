@@ -9,3 +9,27 @@
 .fullscreen-button {
   width: 100%;
 }
+
+.status-text {
+  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.56);
+  font-size: 13px;
+}
+
+.city-results {
+  overflow: hidden;
+  margin-top: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+.city-option {
+  width: 100%;
+  min-height: 42px;
+  text-align: left;
+  border-radius: 0;
+}
+
+.city-option + .city-option {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}

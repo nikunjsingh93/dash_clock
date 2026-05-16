@@ -1,8 +1,30 @@
 <h2 mat-dialog-title>Change Weather Location</h2>
 <mat-dialog-content class="mat-typography">
   <section class="settings-section">
-    <h3>Enter Your City Name</h3>
-    <input matInput type="text" (keyup)="setValue($event)" placeholder="Enter City Name">
+    <h3>Search Your City</h3>
+    <input
+      matInput
+      type="text"
+      [value]="searchValue"
+      (keyup)="searchCities($event)"
+      placeholder="Start typing a city"
+      autocomplete="off">
+
+    <div class="status-text" *ngIf="isSearching">Searching cities...</div>
+    <div class="status-text" *ngIf="!isSearching && searchValue && searchValue.length > 1 && cityResults.length === 0">
+      No cities found
+    </div>
+
+    <div class="city-results" *ngIf="cityResults.length > 0">
+      <button
+        mat-button
+        type="button"
+        class="city-option"
+        *ngFor="let city of cityResults"
+        (click)="selectCity(city)">
+        <span>{{ formatCity(city) }}</span>
+      </button>
+    </div>
   </section>
 
   <section class="settings-section">
@@ -14,5 +36,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-stroked-button mat-dialog-close>Cancel</button>
-  <button mat-stroked-button (click)="update()" mat-dialog-close cdkFocusInitial>Update</button>
+  <button mat-stroked-button (click)="update()" [disabled]="!selectedCity" mat-dialog-close cdkFocusInitial>Update</button>
 </mat-dialog-actions>
