@@ -1,7 +1,8 @@
 <aside class="weather-card">
     <div class="weather-main">
-        <fa-icon class="weather-icon" *ngIf="dataService.iconDay" [icon]="faSun"></fa-icon>
-        <fa-icon class="weather-icon" *ngIf="!dataService.iconDay" [icon]="faMoon"></fa-icon>
+        <span class="weather-icon-wrap">
+            <fa-icon class="weather-icon" [icon]="weatherIcon"></fa-icon>
+        </span>
 
         <div class="temp-line">
             <span class="main-temp">{{ dataService.weatherData?.temp_celcius || '--' }}°</span>
