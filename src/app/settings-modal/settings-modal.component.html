@@ -1,21 +1,36 @@
-<h2 mat-dialog-title>Change Weather Location</h2>
-<mat-dialog-content class="mat-typography">
+<div class="dialog-header" mat-dialog-title>
+  <h2>Settings</h2>
+  <button
+    type="button"
+    class="header-icon-button"
+    aria-label="Toggle full screen"
+    (click)="toggleFullScreen()">
+    <mat-icon>{{ isFullScreen ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+  </button>
+</div>
+<p class="dialog-subtitle">Tune the home display without leaving the clock.</p>
+
+<mat-dialog-content class="settings-content">
   <section class="settings-section">
     <h3>Search Your City</h3>
-    <input
-      matInput
-      type="text"
-      [value]="searchValue"
-      (keyup)="searchCities($event)"
-      placeholder="Start typing a city"
-      autocomplete="off">
 
-    <div class="status-text" *ngIf="isSearching">Searching cities...</div>
-    <div class="status-text" *ngIf="!isSearching && searchValue && searchValue.length > 1 && cityResults.length === 0">
-      No cities found
+    <div class="search-box">
+      <input
+        type="text"
+        [value]="searchValue"
+        (keyup)="searchCities($event)"
+        placeholder="Start typing a city"
+        autocomplete="off">
     </div>
 
-    <div class="city-results" *ngIf="cityResults.length > 0">
+    <div class="city-results">
+      <div class="status-text" *ngIf="isSearching">Searching cities...</div>
+      <div class="status-text" *ngIf="!isSearching && (!searchValue || searchValue.length < 2)">
+        Type at least 2 letters to search.
+      </div>
+      <div class="status-text" *ngIf="!isSearching && searchValue && searchValue.length > 1 && cityResults.length === 0">
+        No cities found.
+      </div>
       <button
         mat-button
         type="button"
@@ -27,14 +42,8 @@
     </div>
   </section>
 
-  <section class="settings-section">
-    <h3>Display</h3>
-    <button mat-stroked-button type="button" class="fullscreen-button" (click)="toggleFullScreen()">
-      {{ isFullScreen ? 'Exit Full Screen' : 'Enter Full Screen' }}
-    </button>
-  </section>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-stroked-button mat-dialog-close>Cancel</button>
-  <button mat-stroked-button (click)="update()" [disabled]="!selectedCity" mat-dialog-close cdkFocusInitial>Update</button>
+  <button mat-stroked-button class="action-button secondary" mat-dialog-close>Cancel</button>
+  <button mat-stroked-button class="action-button primary" (click)="update()" [disabled]="!selectedCity" mat-dialog-close cdkFocusInitial>Update</button>
 </mat-dialog-actions>

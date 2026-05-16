@@ -19,7 +19,10 @@ export class DashboardComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(SettingsModalComponent);
+    const dialogRef = this.dialog.open(SettingsModalComponent, {
+      panelClass: 'settings-dialog-panel',
+      width: 'min(92vw, 460px)'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
