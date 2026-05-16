@@ -14,11 +14,14 @@ export class DataHandlingService {
   selectedLocation:any;
   weatherIconKey = 'sun';
   private apiKey = '3398dd874ccbff037313128b7fd0ae02';
+  private storageKey = 'dashClockWeatherLocation';
 
   constructor() {
     this.weatherData = {
       main: {}
     };
+
+    this.loadSavedLocation();
 
     this.getWeatherData();
 
@@ -77,6 +80,7 @@ export class DataHandlingService {
   setLocation(location) {
     this.selectedLocation = location;
     this.cityValue = this.formatLocation(location);
+    this.saveLocation(location);
 
     this.getWeatherData();
   }
@@ -87,6 +91,39 @@ export class DataHandlingService {
     }
 
     return [location.name, location.state, location.country].filter(Boolean).join(', ');
+  }
+
+  loadSavedLocation() {
+    try {
+      const savedLocation = localStorage.getItem(this.storageKey);
+
+      if (!savedLocation) {
+        return;
+      }
+
+      const location = JSON.parse(savedLocation);
+
+      if (location && location.name && typeof location.lat === 'number' && typeof location.lon === 'number') {
+        this.selectedLocation = location;
+        this.cityValue = this.formatLocation(location);
+      }
+    } catch (error) {
+      localStorage.removeItem(this.storageKey);
+    }
+  }
+
+  saveLocation(location) {
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify({
+        name: location.name,
+        state: location.state,
+        country: location.country,
+        lat: location.lat,
+        lon: location.lon
+      }));
+    } catch (error) {
+      // Weather still works if storage is unavailable.
+    }
   }
 
   setOpenMeteoWeatherData(data, location) {
