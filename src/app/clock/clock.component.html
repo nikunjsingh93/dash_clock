@@ -1,11 +1,7 @@
-<div class="top-spacer"></div>
-<div class="col-100 flex-wrap">
-    <div class="col-20"></div>
-    <div class="col-80">
-        <mat-card class="example-card">
-            <div class="clock"> {{ time | date: 'hh:mm' }}</div>
-            <div class="clock-st"> {{ time | date: 'a' }}</div>
-        </mat-card>
+<div class="clock-wrap">
+    <div class="time-row">
+        <span class="clock">{{ time | date: 'h:mm' }}</span>
+        <span class="clock-st">{{ time | date: 'a' }}</span>
     </div>
-    <div class="col-20"></div>
+    <div class="seconds">{{ time | date: 'ss' }}</div>
 </div>

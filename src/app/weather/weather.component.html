@@ -1,40 +1,19 @@
-<div class="top-spacer"></div>
-<div class="col-100 flex-wrap">
-    <div class="col-20"></div>
-    <div class="col-80">
-        <mat-card class="example-card">
-            <div class="weather">
-                <div class="padding-bottom-40">
-                    <fa-icon *ngIf="this.dataService.iconDay" [icon]="faSun" size="3x"></fa-icon>
-                    <fa-icon *ngIf="!this.dataService.iconDay" [icon]="faMoon" size="3x" ></fa-icon>
-                </div>
-                <div class="main-temp padding-bottom-20">
-                    <span>
-                        {{this.dataService.weatherData.temp_celcius}}°
-                    </span>
-                </div>
-                <div class="highlow padding-bottom-10">
-                    <span>
-                        {{this.dataService.weatherData.temp_min}}° / {{this.dataService.weatherData.temp_max}}°
-                    </span>
-                </div>
-                <div class="sec-temp padding-bottom-20">
-                    <span>
-                        Feels Like: {{this.dataService.weatherData.temp_feels_like}}°
-                    </span>
-                </div>
-                <div class="name padding-bottom-10">
-                    <span>
-                       {{this.dataService.weatherData.name}}
-                    </span>
-                </div>
-                <div class="desc padding-bottom-10">
-                    <span>
-                    {{ this.dataService.weatherDesc}}
-                    </span>
-                </div>
-            </div>
-        </mat-card>
+<aside class="weather-card">
+    <div class="weather-main">
+        <fa-icon class="weather-icon" *ngIf="dataService.iconDay" [icon]="faSun"></fa-icon>
+        <fa-icon class="weather-icon" *ngIf="!dataService.iconDay" [icon]="faMoon"></fa-icon>
+
+        <div class="temp-line">
+            <span class="main-temp">{{ dataService.weatherData?.temp_celcius || '--' }}°</span>
+            <span class="desc">{{ dataService.weatherDesc || 'Loading' }}</span>
+        </div>
     </div>
-    <div class="col-20"></div>
-</div>
+
+    <div class="weather-meta">
+        <span>Feels {{ dataService.weatherData?.temp_feels_like || '--' }}°</span>
+        <span>High {{ dataService.weatherData?.temp_max || '--' }}°</span>
+        <span>Low {{ dataService.weatherData?.temp_min || '--' }}°</span>
+    </div>
+
+    <div class="name">{{ dataService.weatherData?.name || dataService.cityValue }}</div>
+</aside>

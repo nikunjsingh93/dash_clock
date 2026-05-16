@@ -1,9 +1,4 @@
-<div class="col-100 flex-wrap">
-    <div class="col-20"></div>
-    <div class="col-80">
-        <mat-card class="example-card">
-            <div class="date">  {{ time | date: 'EEEE, MMMM d' }}</div>
-        </mat-card>
-    </div>
-    <div class="col-20"></div>
+<div class="date-card">
+    <div class="day">{{ time | date: 'EEEE' }}</div>
+    <div class="date">{{ time | date: 'MMMM d' }}</div>
 </div>

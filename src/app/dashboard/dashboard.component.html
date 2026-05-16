@@ -1,21 +1,20 @@
-<div class="container">
+<main class="dashboard-shell">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-    <div class="col-100 flex-wrap">
-        <div class="col-50">
-            <div class="">
-                <app-clock></app-clock>
-            </div>
-            <div class="">
-                <app-calender></app-calender>
-            </div>
-        </div>
-        <div class="col-50">
-            <div class="settings-icon">
-                <mat-icon (click)="openDialog()" >settings</mat-icon>
-            </div>
+    <section class="top-bar" aria-label="Current date and weather">
+        <app-calender></app-calender>
 
+        <div class="weather-zone">
             <app-weather></app-weather>
         </div>
+    </section>
 
-    </div>
-</div>
+    <button class="settings-button" type="button" aria-label="Open settings" (click)="openDialog()">
+        <mat-icon>settings</mat-icon>
+    </button>
+
+    <section class="clock-stage" aria-label="Current time">
+        <app-clock></app-clock>
+    </section>
+</main>
