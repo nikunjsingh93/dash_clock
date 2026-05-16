@@ -1,10 +1,16 @@
 <h2 mat-dialog-title>Change Weather Location</h2>
 <mat-dialog-content class="mat-typography">
+  <section class="settings-section">
+    <h3>Enter Your City Name</h3>
+    <input matInput type="text" (keyup)="setValue($event)" placeholder="Enter City Name">
+  </section>
 
-
-  <h3>Enter Your City Name</h3>
-  <input matInput type="text" (keyup)="setValue($event)" placeholder="Enter City Name">
-
+  <section class="settings-section">
+    <h3>Display</h3>
+    <button mat-stroked-button type="button" class="fullscreen-button" (click)="toggleFullScreen()">
+      {{ isFullScreen ? 'Exit Full Screen' : 'Enter Full Screen' }}
+    </button>
+  </section>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-stroked-button mat-dialog-close>Cancel</button>
