@@ -14,19 +14,17 @@
 .weather-icon-wrap {
   display: grid;
   place-items: center;
-  width: clamp(42px, 6vw, 66px);
-  height: clamp(42px, 6vw, 66px);
-  border: 1px solid rgba(75, 231, 255, 0.18);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 28%, rgba(234, 251, 255, 0.16), transparent 32%),
-    rgba(6, 19, 29, 0.36);
-  box-shadow: 0 0 32px rgba(75, 231, 255, 0.08);
+  width: clamp(36px, 5vw, 56px);
+  height: clamp(36px, 5vw, 56px);
 }
 
 .weather-icon {
-  color: rgba(222, 246, 255, 0.86);
-  font-size: clamp(20px, 3vw, 34px);
+  color: #dff8ff;
+  font-size: clamp(30px, 4.8vw, 56px);
+  filter:
+    drop-shadow(0 0 10px rgba(75, 231, 255, 0.34))
+    drop-shadow(0 0 24px rgba(75, 231, 255, 0.14));
+  opacity: 0.95;
 }
 
 .temp-line {
