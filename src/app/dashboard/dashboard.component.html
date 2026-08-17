@@ -2,19 +2,51 @@
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
 
-    <section class="top-bar" aria-label="Current date and weather">
-        <app-calender></app-calender>
+    <section class="top-bar" [class.has-secondary]="dataService.secondaryLocation" aria-label="Current date, weather, and clocks">
+        <div
+            class="date-scale"
+            [style.transform]="'scale(' + (dataService.displaySettings.dateScale / 100) + ')'">
+            <app-calender></app-calender>
+        </div>
 
-        <div class="weather-zone">
-            <app-weather></app-weather>
+        <div class="secondary-clock-zone" *ngIf="dataService.secondaryLocation">
+            <div
+                class="secondary-clock-scale"
+                [style.transform]="'scale(' + (dataService.displaySettings.secondaryClockScale / 100) + ')'">
+                <app-clock
+                    [compact]="true"
+                    [locationLabel]="dataService.secondaryLocation.name"
+                    [utcOffsetSeconds]="dataService.secondaryLocation.utc_offset_seconds">
+                </app-clock>
+            </div>
+        </div>
+
+        <div class="weather-zone top-weather" *ngIf="!dataService.secondaryLocation">
+            <div
+                class="weather-scale"
+                [style.transform]="'scale(' + (dataService.displaySettings.weatherScale / 100) + ')'">
+                <app-weather></app-weather>
+            </div>
         </div>
     </section>
+
+    <div class="weather-zone bottom-weather" *ngIf="dataService.secondaryLocation">
+        <div
+            class="weather-scale"
+            [style.transform]="'scale(' + (dataService.displaySettings.weatherScale / 100) + ')'">
+            <app-weather [alignRight]="true"></app-weather>
+        </div>
+    </div>
 
     <button class="settings-button" type="button" aria-label="Open settings" (click)="openDialog()">
         <mat-icon>settings</mat-icon>
     </button>
 
     <section class="clock-stage" aria-label="Current time">
-        <app-clock></app-clock>
+        <div
+            class="primary-clock-scale"
+            [style.transform]="'scale(' + (dataService.displaySettings.primaryClockScale / 100) + ')'">
+            <app-clock [utcOffsetSeconds]="dataService.weatherUtcOffsetSeconds"></app-clock>
+        </div>
     </section>
 </main>

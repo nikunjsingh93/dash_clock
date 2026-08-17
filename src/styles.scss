@@ -16,6 +16,9 @@ body {
 }
 
 .settings-dialog-panel .mat-dialog-container {
+  display: block;
+  height: 94vh;
+  max-height: 94vh;
   overflow: hidden;
   border: 1px solid rgba(92, 221, 255, 0.18);
   border-radius: 28px;
@@ -27,6 +30,19 @@ body {
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.46), inset 0 0 80px rgba(75, 231, 255, 0.04);
 }
 
+.settings-dialog-panel app-settings-modal {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 0;
+}
+
+@media only screen and (min-height: 810px) {
+  .settings-dialog-panel .mat-dialog-container {
+    height: 760px;
+  }
+}
+
 .settings-dialog-panel .mat-dialog-title,
 .settings-dialog-panel .mat-dialog-title h2 {
   margin-bottom: 12px;
@@ -36,8 +52,40 @@ body {
   letter-spacing: -0.05em;
 }
 
+.settings-dialog-panel .mat-dialog-title {
+  flex: 0 0 auto;
+}
+
+.settings-dialog-panel .mat-dialog-content {
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+}
+
 .settings-dialog-panel .mat-dialog-actions {
+  z-index: 3;
+  flex: 0 0 auto;
   gap: 10px;
   margin-bottom: 0;
-  padding-bottom: 0;
+  padding: 14px 0 0;
+  border-top: 1px solid rgba(92, 221, 255, 0.1);
+  background: rgba(3, 10, 16, 0.94);
+}
+
+@media only screen and (max-height: 600px) {
+  .settings-dialog-panel .mat-dialog-container {
+    padding-top: 18px;
+    padding-bottom: 14px;
+  }
+
+  .settings-dialog-panel .mat-dialog-title,
+  .settings-dialog-panel .mat-dialog-title h2 {
+    margin-bottom: 7px;
+    font-size: 26px;
+  }
+
+  .settings-dialog-panel .mat-dialog-actions {
+    min-height: 48px;
+    padding-top: 8px;
+  }
 }

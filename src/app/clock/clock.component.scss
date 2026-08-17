@@ -37,6 +37,34 @@
   text-indent: 0.5em;
 }
 
+.clock-wrap.compact {
+  text-align: right;
+  text-shadow: 0 0 24px rgba(151, 225, 255, 0.12);
+}
+
+.compact .time-row {
+  gap: clamp(5px, 0.8vw, 10px);
+}
+
+.compact .clock {
+  font-size: clamp(34px, 5.4vw, 68px);
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+}
+
+.compact .clock-st {
+  font-size: clamp(14px, 2vw, 24px);
+}
+
+.clock-location {
+  margin-top: 8px;
+  color: rgba(126, 200, 224, 0.76);
+  font-size: clamp(11px, 1.4vw, 16px);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 @media only screen and (max-width: 700px) {
   .time-row {
     display: grid;
@@ -49,6 +77,28 @@
 
   .clock-st {
     font-size: clamp(24px, 9vw, 42px);
+  }
+
+  .compact .time-row {
+    display: inline-flex;
+    gap: 5px;
+  }
+
+  .compact .clock {
+    font-size: clamp(28px, 10vw, 44px);
+  }
+
+  .compact .clock-st {
+    font-size: clamp(12px, 4vw, 17px);
+  }
+
+  .clock-location {
+    max-width: 140px;
+    margin-left: auto;
+    overflow: hidden;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 

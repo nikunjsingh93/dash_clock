@@ -12,9 +12,20 @@ export class DataHandlingService {
 
   cityValue = 'boston';
   selectedLocation:any;
+  secondaryLocation:any;
   weatherIconKey = 'sun';
+  weatherUtcOffsetSeconds = 0;
+  weatherTimezone = '';
+  displaySettings = {
+    dateScale: 100,
+    primaryClockScale: 100,
+    weatherScale: 100,
+    secondaryClockScale: 100
+  };
   private apiKey = '3398dd874ccbff037313128b7fd0ae02';
   private storageKey = 'dashClockWeatherLocation';
+  private secondaryStorageKey = 'dashClockSecondaryLocation';
+  private displayStorageKey = 'dashClockDisplaySettings';
 
   constructor() {
     this.weatherData = {
@@ -22,11 +33,15 @@ export class DataHandlingService {
     };
 
     this.loadSavedLocation();
+    this.loadSavedSecondaryLocation();
+    this.loadDisplaySettings();
 
     this.getWeatherData();
+    this.refreshSecondaryTimezone();
 
     setInterval(() => {
-      this.getWeatherData(); 
+      this.getWeatherData();
+      this.refreshSecondaryTimezone();
     }, 1800000);
    }
 
@@ -60,7 +75,11 @@ export class DataHandlingService {
   }
 
   getOpenWeatherData() {
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + this.cityValue + '&appid=' + this.apiKey)
+    const weatherUrl = this.selectedLocation
+      ? 'https://api.openweathermap.org/data/2.5/weather?lat=' + this.selectedLocation.lat + '&lon=' + this.selectedLocation.lon + '&appid=' + this.apiKey
+      : 'https://api.openweathermap.org/data/2.5/weather?q=' + this.cityValue + '&appid=' + this.apiKey;
+
+    fetch(weatherUrl)
       .then(res => res.json())
       .then(data => {
         this.setWeatherData(data);
@@ -85,6 +104,50 @@ export class DataHandlingService {
     this.getWeatherData();
   }
 
+  setSecondaryLocation(location) {
+    return this.fetchTimezone(location)
+      .then(timezoneData => {
+        this.secondaryLocation = Object.assign({}, location, timezoneData);
+        this.saveSecondaryLocation();
+
+        return this.secondaryLocation;
+      });
+  }
+
+  removeSecondaryLocation() {
+    this.secondaryLocation = null;
+
+    try {
+      localStorage.removeItem(this.secondaryStorageKey);
+    } catch (error) {
+      // The display can continue without storage access.
+    }
+  }
+
+  refreshSecondaryTimezone() {
+    if (!this.secondaryLocation) {
+      return Promise.resolve(null);
+    }
+
+    return this.fetchTimezone(this.secondaryLocation)
+      .then(timezoneData => {
+        this.secondaryLocation = Object.assign({}, this.secondaryLocation, timezoneData);
+        this.saveSecondaryLocation();
+
+        return this.secondaryLocation;
+      })
+      .catch(() => this.secondaryLocation);
+  }
+
+  fetchTimezone(location) {
+    return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + location.lat + '&longitude=' + location.lon + '&current=temperature_2m&timezone=auto&forecast_days=1')
+      .then(res => res.json())
+      .then(data => ({
+        timezone: data.timezone || '',
+        utc_offset_seconds: typeof data.utc_offset_seconds === 'number' ? data.utc_offset_seconds : 0
+      }));
+  }
+
   formatLocation(location) {
     if (!location) {
       return '';
@@ -106,6 +169,8 @@ export class DataHandlingService {
       if (location && location.name && typeof location.lat === 'number' && typeof location.lon === 'number') {
         this.selectedLocation = location;
         this.cityValue = this.formatLocation(location);
+        this.weatherTimezone = location.timezone || '';
+        this.weatherUtcOffsetSeconds = typeof location.utc_offset_seconds === 'number' ? location.utc_offset_seconds : 0;
       }
     } catch (error) {
       localStorage.removeItem(this.storageKey);
@@ -119,11 +184,96 @@ export class DataHandlingService {
         state: location.state,
         country: location.country,
         lat: location.lat,
-        lon: location.lon
+        lon: location.lon,
+        timezone: location.timezone || this.weatherTimezone,
+        utc_offset_seconds: typeof location.utc_offset_seconds === 'number' ? location.utc_offset_seconds : this.weatherUtcOffsetSeconds
       }));
     } catch (error) {
       // Weather still works if storage is unavailable.
     }
+  }
+
+  loadSavedSecondaryLocation() {
+    try {
+      const savedLocation = localStorage.getItem(this.secondaryStorageKey);
+
+      if (!savedLocation) {
+        return;
+      }
+
+      const location = JSON.parse(savedLocation);
+
+      if (location && location.name && typeof location.lat === 'number' && typeof location.lon === 'number') {
+        this.secondaryLocation = location;
+      }
+    } catch (error) {
+      localStorage.removeItem(this.secondaryStorageKey);
+    }
+  }
+
+  saveSecondaryLocation() {
+    if (!this.secondaryLocation) {
+      return;
+    }
+
+    try {
+      localStorage.setItem(this.secondaryStorageKey, JSON.stringify(this.secondaryLocation));
+    } catch (error) {
+      // The second clock still works if storage is unavailable.
+    }
+  }
+
+  loadDisplaySettings() {
+    try {
+      const savedSettings = JSON.parse(localStorage.getItem(this.displayStorageKey) || '{}');
+
+      this.displaySettings = {
+        dateScale: this.normalizeScale(savedSettings.dateScale),
+        primaryClockScale: this.normalizeScale(savedSettings.primaryClockScale),
+        weatherScale: this.normalizeScale(savedSettings.weatherScale),
+        secondaryClockScale: this.normalizeScale(savedSettings.secondaryClockScale)
+      };
+    } catch (error) {
+      this.resetDisplaySettings(false);
+    }
+  }
+
+  saveDisplaySettings(settings) {
+    this.displaySettings = {
+      dateScale: this.normalizeScale(settings.dateScale),
+      primaryClockScale: this.normalizeScale(settings.primaryClockScale),
+      weatherScale: this.normalizeScale(settings.weatherScale),
+      secondaryClockScale: this.normalizeScale(settings.secondaryClockScale)
+    };
+
+    try {
+      localStorage.setItem(this.displayStorageKey, JSON.stringify(this.displaySettings));
+    } catch (error) {
+      // Size changes remain active for the current session.
+    }
+  }
+
+  resetDisplaySettings(save = true) {
+    this.displaySettings = {
+      dateScale: 100,
+      primaryClockScale: 100,
+      weatherScale: 100,
+      secondaryClockScale: 100
+    };
+
+    if (save) {
+      this.saveDisplaySettings(this.displaySettings);
+    }
+  }
+
+  normalizeScale(value) {
+    const numericValue = Number(value);
+
+    if (!numericValue) {
+      return 100;
+    }
+
+    return Math.min(150, Math.max(75, numericValue));
   }
 
   setOpenMeteoWeatherData(data, location) {
@@ -131,6 +281,15 @@ export class DataHandlingService {
     const daily = data.daily || {};
     const isDay = current.is_day === 1;
     const weatherCode = current.weather_code;
+
+    this.weatherTimezone = data.timezone || '';
+    this.weatherUtcOffsetSeconds = typeof data.utc_offset_seconds === 'number' ? data.utc_offset_seconds : 0;
+    this.selectedLocation = Object.assign({}, location, {
+      timezone: this.weatherTimezone,
+      utc_offset_seconds: this.weatherUtcOffsetSeconds
+    });
+    this.cityValue = this.formatLocation(this.selectedLocation);
+    this.saveLocation(this.selectedLocation);
 
     this.weatherData = {
       name: location.name,
@@ -232,6 +391,13 @@ export class DataHandlingService {
     let currentDate = new Date();
     
     this.weatherData.isDay = (currentDate.getTime() < sunsetTime.getTime());
+
+    this.weatherUtcOffsetSeconds = typeof this.weatherData.timezone === 'number' ? this.weatherData.timezone : 0;
+    this.weatherTimezone = '';
+    if (this.selectedLocation) {
+      this.selectedLocation.utc_offset_seconds = this.weatherUtcOffsetSeconds;
+      this.saveLocation(this.selectedLocation);
+    }
 
     this.iconDay = this.weatherData.isDay;
 

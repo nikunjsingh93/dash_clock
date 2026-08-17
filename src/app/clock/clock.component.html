@@ -1,7 +1,8 @@
-<div class="clock-wrap">
+<div class="clock-wrap" [class.compact]="compact">
     <div class="time-row">
-        <span class="clock">{{ time | date: 'h:mm' }}</span>
-        <span class="clock-st">{{ time | date: 'a' }}</span>
+        <span class="clock">{{ time | date: 'h:mm':'UTC' }}</span>
+        <span class="clock-st">{{ time | date: 'a':'UTC' }}</span>
     </div>
-    <div class="seconds">{{ time | date: 'ss' }}</div>
+    <div class="seconds" *ngIf="!compact">{{ time | date: 'ss':'UTC' }}</div>
+    <div class="clock-location" *ngIf="compact && locationLabel">{{ locationLabel }}</div>
 </div>

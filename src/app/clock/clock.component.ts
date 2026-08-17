@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-clock',
@@ -7,14 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClockComponent implements OnInit {
 
- 
+  @Input() compact = false;
+  @Input() locationLabel = '';
+  @Input() utcOffsetSeconds = 0;
+
   time = new Date();
   timer;
 
   ngOnInit() {
+    this.updateTime();
+
     this.timer = setInterval(() => {
-      this.time = new Date();
+      this.updateTime();
     }, 1000);
+  }
+
+  updateTime() {
+    this.time = new Date(Date.now() + (Number(this.utcOffsetSeconds) || 0) * 1000);
   }
 
   ngOnDestroy(){

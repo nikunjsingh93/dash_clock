@@ -84,6 +84,20 @@
   .weather-meta {
     max-width: 260px;
   }
+
+  .weather-card.align-right {
+    text-align: right;
+  }
+
+  .align-right .weather-main,
+  .align-right .temp-line,
+  .align-right .weather-meta {
+    justify-content: flex-end;
+  }
+
+  .align-right .weather-meta {
+    margin-left: auto;
+  }
 }
 
 @media only screen and (max-width: 380px) {

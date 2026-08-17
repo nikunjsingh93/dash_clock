@@ -1,4 +1,4 @@
-<aside class="weather-card">
+<aside class="weather-card" [class.align-right]="alignRight">
     <div class="weather-main">
         <svg class="weather-icon" viewBox="0 0 24 24" aria-hidden="true" [ngSwitch]="dataService.weatherIconKey">
             <ng-container *ngSwitchCase="'sun'">

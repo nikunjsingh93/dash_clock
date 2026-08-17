@@ -1,5 +1,8 @@
 <div class="dialog-header" mat-dialog-title>
-  <h2>Settings</h2>
+  <div>
+    <h2>Settings</h2>
+    <p class="dialog-subtitle">Cities, clocks, and display size.</p>
+  </div>
   <button
     type="button"
     class="header-icon-button"
@@ -8,42 +11,142 @@
     <mat-icon>{{ isFullScreen ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
   </button>
 </div>
-<p class="dialog-subtitle">Tune the home display without leaving the clock.</p>
 
 <mat-dialog-content class="settings-content">
   <section class="settings-section">
-    <h3>Search Your City</h3>
-
-    <div class="search-box">
-      <input
-        type="text"
-        [value]="searchValue"
-        (keyup)="searchCities($event)"
-        placeholder="Start typing a city"
-        autocomplete="off">
+    <div class="section-heading">
+      <div>
+        <h3>Weather &amp; Main Clock</h3>
+        <p>Weather, date, and the large clock use this city.</p>
+      </div>
     </div>
 
-    <div class="city-results">
-      <div class="status-text" *ngIf="isSearching">Searching cities...</div>
-      <div class="status-text" *ngIf="!isSearching && (!searchValue || searchValue.length < 2)">
-        Type at least 2 letters to search.
+    <div class="search-field">
+      <div class="search-box">
+        <mat-icon>search</mat-icon>
+        <input
+          type="text"
+          [value]="weatherSearchValue"
+          (keyup)="searchCities($event, 'weather')"
+          placeholder="Search weather city"
+          autocomplete="off">
       </div>
-      <div class="status-text" *ngIf="!isSearching && searchValue && searchValue.length > 1 && cityResults.length === 0">
-        No cities found.
+
+      <div class="city-results dropdown-results" *ngIf="showWeatherDropdown">
+        <div class="status-text" *ngIf="isWeatherSearching">Searching cities...</div>
+        <div class="status-text" *ngIf="!isWeatherSearching && weatherHasSearched && weatherResults.length === 0">
+          No cities found.
+        </div>
+        <button
+          mat-button
+          type="button"
+          class="city-option"
+          *ngFor="let city of weatherResults"
+          (click)="selectCity(city, 'weather')">
+          <span>{{ formatCity(city) }}</span>
+        </button>
       </div>
-      <button
-        mat-button
-        type="button"
-        class="city-option"
-        *ngFor="let city of cityResults"
-        (click)="selectCity(city)">
-        <span>{{ formatCity(city) }}</span>
-      </button>
     </div>
   </section>
 
+  <section class="settings-section">
+    <div class="section-heading">
+      <div>
+        <h3>Second Clock</h3>
+        <p>Add another city time to the top-right corner.</p>
+      </div>
+      <button
+        *ngIf="hasSecondaryClock"
+        mat-button
+        type="button"
+        class="text-button danger"
+        (click)="removeSecondaryClock()">
+        Remove
+      </button>
+    </div>
+
+    <div class="selected-location" *ngIf="hasSecondaryClock && !showSecondaryEditor">
+      <div>
+        <span>Second clock</span>
+        <strong>{{ secondaryDisplayName }}</strong>
+      </div>
+      <button mat-stroked-button type="button" class="small-action" (click)="showSecondaryEditor = true">
+        Change
+      </button>
+    </div>
+
+    <button
+      *ngIf="!hasSecondaryClock && !showSecondaryEditor"
+      mat-stroked-button
+      type="button"
+      class="add-clock-button"
+      (click)="showSecondaryEditor = true">
+      <mat-icon>add</mat-icon>
+      Add second clock
+    </button>
+
+    <div class="secondary-editor" *ngIf="showSecondaryEditor">
+      <div class="search-field">
+        <div class="search-box">
+          <mat-icon>public</mat-icon>
+          <input
+            type="text"
+            [value]="secondarySearchValue"
+            (keyup)="searchCities($event, 'secondary')"
+            placeholder="Search second clock city"
+            autocomplete="off">
+        </div>
+
+        <div class="city-results dropdown-results" *ngIf="showSecondaryDropdown">
+          <div class="status-text" *ngIf="isSecondarySearching">Searching cities...</div>
+          <div class="status-text" *ngIf="!isSecondarySearching && secondaryHasSearched && secondaryResults.length === 0">
+            No cities found.
+          </div>
+          <button
+            mat-button
+            type="button"
+            class="city-option"
+            *ngFor="let city of secondaryResults"
+            (click)="selectCity(city, 'secondary')">
+            <span>{{ formatCity(city) }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="settings-section size-section">
+    <div class="section-heading">
+      <div>
+        <h3>Display Sizes</h3>
+        <p>Adjust each dashboard element independently.</p>
+      </div>
+      <button mat-button type="button" class="text-button" (click)="resetSizes()">Reset sizes</button>
+    </div>
+
+    <label class="size-control">
+      <span>Day &amp; date <strong>{{ displaySettings.dateScale }}%</strong></span>
+      <input type="range" min="75" max="150" step="5" [value]="displaySettings.dateScale" (input)="setScale('dateScale', $event)">
+    </label>
+
+    <label class="size-control">
+      <span>Main clock <strong>{{ displaySettings.primaryClockScale }}%</strong></span>
+      <input type="range" min="75" max="150" step="5" [value]="displaySettings.primaryClockScale" (input)="setScale('primaryClockScale', $event)">
+    </label>
+
+    <label class="size-control">
+      <span>Weather <strong>{{ displaySettings.weatherScale }}%</strong></span>
+      <input type="range" min="75" max="150" step="5" [value]="displaySettings.weatherScale" (input)="setScale('weatherScale', $event)">
+    </label>
+
+    <label class="size-control">
+      <span>Second clock <strong>{{ displaySettings.secondaryClockScale }}%</strong></span>
+      <input type="range" min="75" max="150" step="5" [value]="displaySettings.secondaryClockScale" (input)="setScale('secondaryClockScale', $event)">
+    </label>
+  </section>
 </mat-dialog-content>
+
 <mat-dialog-actions align="end">
   <button mat-stroked-button class="action-button secondary" mat-dialog-close>Cancel</button>
-  <button mat-stroked-button class="action-button primary" (click)="update()" [disabled]="!selectedCity" mat-dialog-close cdkFocusInitial>Update</button>
+  <button mat-stroked-button class="action-button primary" (click)="save()" mat-dialog-close cdkFocusInitial>Save</button>
 </mat-dialog-actions>

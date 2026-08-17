@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataHandlingService } from './../data-handling.service';
 
 @Component({
   selector: 'app-calender',
@@ -11,10 +12,18 @@ export class CalenderComponent implements OnInit {
   time = new Date();
   timer;
 
+  constructor(public dataService: DataHandlingService) { }
+
   ngOnInit() {
+    this.updateTime();
+
     this.timer = setInterval(() => {
-      this.time = new Date();
+      this.updateTime();
     }, 1000);
+  }
+
+  updateTime() {
+    this.time = new Date(Date.now() + this.dataService.weatherUtcOffsetSeconds * 1000);
   }
 
   ngOnDestroy(){

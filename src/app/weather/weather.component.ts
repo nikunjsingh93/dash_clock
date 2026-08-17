@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataHandlingService } from './../data-handling.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { DataHandlingService } from './../data-handling.service';
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
+
+  @Input() alignRight = false;
 
   constructor(public dataService: DataHandlingService) { }
 

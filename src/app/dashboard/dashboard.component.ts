@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {SettingsModalComponent} from './../settings-modal/settings-modal.component';
+import {DataHandlingService} from './../data-handling.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import {SettingsModalComponent} from './../settings-modal/settings-modal.compone
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public dataService: DataHandlingService) {
 
   }
 
@@ -21,7 +22,8 @@ export class DashboardComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(SettingsModalComponent, {
       panelClass: 'settings-dialog-panel',
-      width: 'min(92vw, 460px)'
+      width: 'min(94vw, 560px)',
+      maxHeight: '94vh'
     });
 
     dialogRef.afterClosed().subscribe(result => {

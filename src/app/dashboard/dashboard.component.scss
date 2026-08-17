@@ -61,6 +61,41 @@
     justify-self: end;
 }
 
+.weather-scale,
+.secondary-clock-scale,
+.primary-clock-scale,
+.date-scale {
+    transition: transform 220ms ease;
+}
+
+.date-scale {
+    transform-origin: top left;
+}
+
+.top-weather .weather-scale {
+    transform-origin: top right;
+}
+
+.secondary-clock-zone {
+    justify-self: end;
+    margin-right: clamp(44px, 5vw, 70px);
+}
+
+.secondary-clock-scale {
+    transform-origin: top right;
+}
+
+.bottom-weather {
+    position: absolute;
+    z-index: 2;
+    right: var(--edge);
+    bottom: clamp(28px, 7vh, 86px);
+}
+
+.bottom-weather .weather-scale {
+    transform-origin: bottom right;
+}
+
 .clock-stage {
     position: absolute;
     z-index: 1;
@@ -68,6 +103,10 @@
     display: grid;
     place-items: center;
     padding: 120px var(--edge) 72px;
+}
+
+.primary-clock-scale {
+    transform-origin: center;
 }
 
 .settings-button {
@@ -111,8 +150,33 @@
         padding-top: 28px;
     }
 
+    .top-bar.has-secondary {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
     .weather-zone {
         justify-self: start;
+    }
+
+    .top-weather .weather-scale {
+        transform-origin: top left;
+    }
+
+    .secondary-clock-zone {
+        align-self: start;
+        margin-right: 0;
+        padding-top: 48px;
+    }
+
+    .bottom-weather {
+        right: 18px;
+        bottom: 24px;
+        justify-self: auto;
+    }
+
+    .bottom-weather .weather-scale {
+        transform-origin: bottom right;
     }
 
     .clock-stage {
@@ -129,5 +193,9 @@
 
     .clock-stage {
         padding-top: 164px;
+    }
+
+    .bottom-weather {
+        bottom: 18px;
     }
 }
